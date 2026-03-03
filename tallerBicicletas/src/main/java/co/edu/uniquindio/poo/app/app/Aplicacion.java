@@ -6,30 +6,26 @@ import java.util.Date;
 
 public class Aplicacion {
     public static void main(String[] args) {
-        /**
-         * Para la utilizacion de algunas funciones como .add() , .size() , date(), o la clase enum para enumerar los estados de Orden, me apoye de la IA, para que
-         * me explique como funcionaban y poderlos aplicar para hacer mi codigo mas eficiente, el resto de metodos y logica fue ideada por mi
-         *
-         * Use objetos con Inputs predeterminados ya que aun no manejo muy bien el usar inputs dados por el usuario, estoy estudiando y familiarizandome con eso
-         * para usarlo en mis proximos proyectos
-         */
-
 
         // Codigo Principal (No LÓGICA)
-        TallerBicicletas taller = new TallerBicicletas("Taller De Manuel","Manuel",0);
+        TallerBicicletas taller = new TallerBicicletas("Taller De Manuel", "Manuel", 1);
 
-        Mecanico juan = new Mecanico ("Juan", 1500);
+        Mecanico juan = new Mecanico("Juan", 1500);
         taller.agregarMecanico(juan);
 
-        Cliente cliente = new Cliente ("Camilo","3185454373", "camilo1221@gmail.com", 2);
+        Cliente cliente = new Cliente("Camilo", "3185454373", "camilo1221@gmail.com", 2);
         taller.registrarCliente(cliente);
 
         Date fechaActual = new Date();
+        Date fechaSalida = new Date(fechaActual.getTime() + (7L * 24 * 60 * 60 * 1000));
 
-        Orden orden = new Orden ("La bicicleta no frena", 233.3,fechaActual );
+        Bicicleta bici = new Bicicleta("GW", "Rojo", "Camilo", fechaActual, fechaSalida);
+        cliente.setBicicleta(bici);
+
+        Orden orden = new Orden("La bicicleta no frena", 233.3, fechaActual);
         orden.asignarMecanico(juan);
 
-        Tarea tarea1 = new Tarea (1, "Ajuste Frenos",2.0);
+        Tarea tarea1 = new Tarea(1, "Ajuste Frenos", 2.0);
         orden.agregarTarea(tarea1);
 
         taller.crearOrden(orden);
@@ -45,8 +41,17 @@ public class Aplicacion {
         System.out.println("Tareas: " + orden.getListaTareas().size() + " tarea(s)");
         System.out.println("-----------------------------");
         System.out.println("Costo Total  : $" + total);
-
-
-
+        System.out.println("-----------------------------");
+        System.out.println("DATOS DEL CLIENTE");
+        System.out.println("Nombre: " + cliente.getNombre());
+        System.out.println("Teléfono: " + cliente.getTelefono());
+        System.out.println("Correo: " + cliente.getCorreo());
+        System.out.println("-----------------------------");
+        System.out.println("DATOS DE LA BICICLETA");
+        System.out.println("Modelo: " + cliente.getBicicleta().getModelo());
+        System.out.println("Color: " + cliente.getBicicleta().getColor());
+        System.out.println("Dueño: " + cliente.getBicicleta().getDueño());
+        System.out.println("Fecha Ingreso: " + cliente.getBicicleta().getFechaIngreso());
+        System.out.println("Fecha Salida : " + cliente.getBicicleta().getFechaSalida());
     }
 }
