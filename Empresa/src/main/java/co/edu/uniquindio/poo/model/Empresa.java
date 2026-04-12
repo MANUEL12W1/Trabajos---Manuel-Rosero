@@ -50,7 +50,6 @@ public class Empresa {
     public String registrarEmpleado(String nombre, String cedula, LocalTime horaEntrada, LocalTime horaSalida, Empresa ownedByEmpresa) {
         String resultado = "";
 
-        // FIX: se buscaba por 'nombre' pero buscarEmpleado recibe cédula
         Empleado empleadoEncontrado = buscarEmpleado(cedula);
         if (empleadoEncontrado != null) {
             resultado = "Ya se encuentra registrado";
