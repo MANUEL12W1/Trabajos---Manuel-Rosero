@@ -19,7 +19,7 @@ public class App {
                     + "3. Notificación Push\n"
                     + "4. Enviar";
 
-            String seleccion = JOptionPane.showInputDialog(null, menu, "Menú de Notificaciones");
+            String seleccion = JOptionPane.showInputDialog(null, menu);
 
             if (seleccion == null) {
                 continuar = false;
